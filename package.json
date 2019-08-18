@@ -1,0 +1,16 @@
+{
+  "name": "new-site",
+  "version": "1.0.0",
+  "description": "personal website",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Liam Mahoney",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.0",
+    "mongodb": "^3.2.7",
+    "winston": "^3.2.1"
+  }
+}
