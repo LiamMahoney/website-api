@@ -7,7 +7,6 @@ let mongo = require("mongodb");
  */
 module.exports = class MongoHelper {
     constructor() {
-        //TODO: move to environemnt variables
         this.dbURL = process.env.MONGO_URL;
         this.dbName = process.env.MONGO_DB;
     }
