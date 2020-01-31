@@ -18,10 +18,15 @@ const logger = winston.createLogger({
 const app = express();
 
 app.use((req, res, next) => {
+<<<<<<< HEAD
     if (req.headers.origin && req.headers.origin.endsWith("liammahoney.dev")) {
         // only allowing requests from my website?
         res.header("Access-Control-Allow-Origin", req.headers.origin);
     }
+=======
+    // TODO: shouldn't be set to '*', need to narrow the list down
+    res.header("Access-Control-Allow-Origin", "*");
+>>>>>>> d48d28d21240a24e0c1b83decb1ca402f08ff0f1
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     if (req.method === "OPTIONS") {
         res.header("Access-Control-Allow-Methods", "PUT, POST, GET, PATCH, DELETE");
