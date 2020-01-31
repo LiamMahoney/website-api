@@ -18,13 +18,16 @@ const logger = winston.createLogger({
 const app = express();
 
 app.use((req, res, next) => {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-	if (req.method === "OPTIONS") {
-		res.header("Access-Control-Allow-Methods", "PUT, POST, GET, PATCH, DELETE");
-		res.status(200).json({});
-	}
-	next();
+    if (req.headers.origin && req.headers.origin.endsWith("liammahoney.dev")) {
+        // only allowing requests from my website?
+        res.header("Access-Control-Allow-Origin", req.headers.origin);
+    }
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    if (req.method === "OPTIONS") {
+        res.header("Access-Control-Allow-Methods", "PUT, POST, GET, PATCH, DELETE");
+        res.status(200).json({});
+    }
+    next();
 });
 
 app.get("/", (req, res) => {
@@ -200,7 +203,7 @@ app.post("/contact", (req, res) => {
 
 // initial authentication
 app.get("/authentication", (req, res) => {
-	res.redirect(301, `https://github.com/login/oauth/authorize?client_id=${process.env.GIT_CLIENT_ID}&allow_signup=false`);
+    res.redirect(301, `https://github.com/login/oauth/authorize?client_id=${process.env.GIT_CLIENT_ID}&allow_signup=false`);
 });
 
 // github authentication callback
